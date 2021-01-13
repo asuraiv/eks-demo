@@ -10,7 +10,7 @@ phases:
       - export PATH=$PWD/:$PATH
   pre_build:
     commands:
-      - TAG="444716303806.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo:0.0.2"
+      - TAG="444716303806.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo:0.0.1"
       - echo $TAG
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 444716303806.dkr.ecr.ap-northeast-2.amazonaws.com
