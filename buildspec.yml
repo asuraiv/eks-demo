@@ -10,10 +10,10 @@ phases:
       - export PATH=$PWD/:$PATH
   pre_build:
     commands:
-      - TAG="$AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-2.amazonaws.com/tmap-sample/eks-demo:$BUILD_NUM"
+      - TAG="444716303806.dkr.ecr.ap-northeast-2.amazonaws.com/tmap-sample/eks-demo:0.0.1"
       - echo $TAG
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin https://$AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-2.amazonaws.com
+      - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin https://444716303806.dkr.ecr.ap-northeast-2.amazonaws.com
   build:
     commands:
       - echo Gradle Build started on `date`
