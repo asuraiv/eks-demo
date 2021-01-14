@@ -1,21 +1,15 @@
-pipeline {
-    agent any
+node {
+  stage 'Checkout'
+  git 'https://github.com/asuraiv/eks-demo.git'
 
-    stages {
-        stage('Build') {
-            steps {
-                sh './gradlew build'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-    }
+  stage 'App Build'
+  sh './gradlew build'
+
+  stage 'Docker build'
+  docker.build('eks-demo')
+
+  stage 'Docker push'
+  docker.withRegistry('444716303806.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo', 'ecr:ap-norteast-2:demo-ecr-credentials') {
+    docker.image('eks-demo').push('latest')
+  }
 }
