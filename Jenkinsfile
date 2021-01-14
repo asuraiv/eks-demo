@@ -9,7 +9,7 @@ node {
   docker.build('eks-demo')
 
   stage 'Docker push'
-  docker.withRegistry('444716303806.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo', 'ecr:ap-northeast-2:demo-ecr-credentials') {
+  docker.withRegistry('http://444716303806.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo', 'ecr:ap-northeast-2:demo-ecr-credentials') {
     docker.image('eks-demo').push('latest')
   }
 }
