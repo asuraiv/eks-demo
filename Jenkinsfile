@@ -1,12 +1,16 @@
 import java.text.SimpleDateFormat
 
 node {
-	stage('Checkout') {
+	stage('Src Checkout') {
 		git 'https://github.com/asuraiv/eks-demo.git'
 	}
 
-  	stage('App Build') {
-  		sh './gradlew build'
+	stage('Test') {
+		sh './gradlew bootJar'
+	}
+
+  	stage('Build') {
+  		sh './gradlew bootJar'
   	}
 
   	stage('Docker build') {
@@ -15,7 +19,7 @@ node {
 	  	latest = docker.build('eks-demo:latest')
   	}
 
-  	stage('Docker push') {
+  	stage('ECR push') {
 		docker.withRegistry('http://444716303806.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo', 'ecr:ap-northeast-2:demo-ecr-credentials') {
 			stamped.push()
 			latest.push()
