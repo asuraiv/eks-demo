@@ -6,7 +6,7 @@ node {
 	}
 
 	stage('Test') {
-		sh './gradlew bootJar'
+		sh './gradlew test'
 	}
 
   	stage('Build') {
