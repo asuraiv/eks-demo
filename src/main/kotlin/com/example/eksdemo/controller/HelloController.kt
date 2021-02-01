@@ -10,7 +10,7 @@ class HelloController(
     @Value("\${spring.profiles.active}")
     val activeProfile: String,
     @Value("\${service.name}")
-    val serviceName: String
+    val serviceName: String?
 ) {
 
     @GetMapping("/hello")
